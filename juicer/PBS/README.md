@@ -1,3 +1,22 @@
+# Significant changes and updates to get running on the Flashlite HPC
+
+[https://rcc.uq.edu.au/flashlite](https://rcc.uq.edu.au/flashlite)
+
+Changes:
+* Added ```$project``` variable and spceifed in every *qsub* with ```#PBS -A $project```
+* ```nodes=1:ppn:1``` -> ```select=1:ncpus=1```
+* Changed greps of "qstat" to cut at the correct place for Flashlite PBS
+* Hardcoded a few ```mem=``` and ```ncpus=``` that may need to adjusted for specific runs
+* Using versions ```module load bwa/0.7.13``` and ```module load Java/1.8.0_45```
+* No GPUs on Flashlite, so the HiCCUPs step is not tested.
+
+
+
+
+# Original README below
+---------
+
+
 Very new to coding and this is my first "big" project in modifying a script. So welcome to make it better!
 
 This PBS version is modified mainly based on the LSF version, but also took other versions as reference. Main changed to create this version is build the job dependencies to guarantee the sequential steps of each job in the original juicer.sh script. #PBS -W depend=afterok:jobID headerline is used.

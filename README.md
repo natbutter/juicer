@@ -53,6 +53,32 @@ cd /30days/natbutter/juicer/HIC003
 ../scripts/juicer.sh
 ```
 
+### Directory structure
+This is what my directory structrue looked like after setting everything up and running (to two levels deep):
+```
+natbutter@flashlite1:/30days/natbutter/juicer> tree -L 2
+.
+|-- HIC003
+|   |-- aligned
+|   |-- fastq
+|   |-- logs
+|   `-- splits
+|-- PBS
+|   `-- scripts
+|-- README.md
+|-- references
+|   |-- Homo_sapiens_assembly19.fasta
+|   |-- Homo_sapiens_assembly19.fasta.amb
+|   |-- Homo_sapiens_assembly19.fasta.ann
+|   |-- Homo_sapiens_assembly19.fasta.bwt
+|   |-- Homo_sapiens_assembly19.fasta.pac
+|   `-- Homo_sapiens_assembly19.fasta.sa
+|-- restriction_sites
+|   `-- hg19_MboI.txt
+`-- scripts -> PBS/scripts
+
+```
+
 # Significant changes and updates to get running on the Flashlite HPC
 
 [https://rcc.uq.edu.au/flashlite](https://rcc.uq.edu.au/flashlite)

@@ -28,29 +28,28 @@ wget https://s3.amazonaws.com/juicerawsmirror/opt/juicer/references/Homo_sapiens
 mkdir ../restriction_sites; cd ../restriction_sites
 wget https://s3.amazonaws.com/juicerawsmirror/opt/juicer/restriction_sites/hg19_MboI.txt
 
-#Get the juicer tools file to run with your version
+#Get the juicer tools file to run with your version (if you need a different one to the repo)
 cd ../scripts
 wget https://hicfiles.tc4ga.com/public/juicer/juicer_tools.1.9.9_jcuda.0.8.jar
-ln -s juicer_tools.1.7.6_jcuda.0.8.jar juicer_tools.jar
-
-cd ..
+ln -s juicer_tools.1.9.9_jcuda.0.8.jar juicer_tools.jar
 
 #Make a directory where you will be running your analysis (and populating with output files)
-mkdir HIC003; cd HIC003
+mkdir ../HIC003; cd ../HIC003
 mkdir fastq; cd fastq
 wget http://juicerawsmirror.s3.amazonaws.com/opt/juicer/work/HIC003/fastq/HIC003_S2_L001_R1_001.fastq.gz
 wget http://juicerawsmirror.s3.amazonaws.com/opt/juicer/work/HIC003/fastq/HIC003_S2_L001_R2_001.fastq.gz
 
 ```
-Now edit the ```juicer.sh``` script to point to the correct project etc. Note, you may need to adjust some of the hardcoded ram/cpu resource requests throughout the workflow in addition to those fixed in the config header lines.
+Now edit the ```scripts/juicer.sh``` script to point to the correct project, and adjust other configuration options. ***Note***, you may need to adjust some of the hardcoded ram/cpu resource requests throughout the workflow in addition to those fixed in the config header lines.
 
 ```
-project=XXXX
+juiceDir="/30days/natbutter/juicer"
+project='NCMAS-xx99'
 ```
 
 Finally, run the script which will launch all the jobs and submit them to the queue:
 ```
-cd HIC003
+cd /30days/natbutter/juicer/HIC003
 ../scripts/juicer.sh
 ```
 

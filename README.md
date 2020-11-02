@@ -1,21 +1,43 @@
 # juicer
-PBS version of https://github.com/aidenlab/juicer for Flashlite HPC. Details of changes are in the [juicer/PBS/] directory.
+PBS version of https://github.com/aidenlab/juicer for Flashlite HPC.
 
 # Simple Intructions
-To replicate the workflow from [https://github.com/aidenlab/juicer/wiki/Running-Juicer-on-a-cluster](https://github.com/aidenlab/juicer/wiki/Running-Juicer-on-a-cluster) 
+To replicate the workflow from [https://github.com/aidenlab/juicer/wiki/Running-Juicer-on-a-cluster](https://github.com/aidenlab/juicer/wiki/Running-Juicer-on-a-cluster) follow these steps:
 
 ```
-cd /30days/nathanielpeterbutterworth
+#Change to a directory you want to install and run your juicer analyses, e.g.
+cd /30days/natbutter
 
+#Clone this repo to that folder
 git clone https://github.com/natbutter/juicer.git
 
+#Change into the repo directory
 cd juicer
 
-ln -s scripts PBS 
+#Link the PBS scripts for ease (as is done on the official repo)
+ln -s PBS/scripts scripts
 
-mkdir refs 
-cd refs
+#Make and get references and restriction_site files (put your own here as needed)
+mkdir references; cd references
+wget https://s3.amazonaws.com/juicerawsmirror/opt/juicer/references/Homo_sapiens_assembly19.fasta
+wget https://s3.amazonaws.com/juicerawsmirror/opt/juicer/references/Homo_sapiens_assembly19.fasta.amb
+wget https://s3.amazonaws.com/juicerawsmirror/opt/juicer/references/Homo_sapiens_assembly19.fasta.ann
+wget https://s3.amazonaws.com/juicerawsmirror/opt/juicer/references/Homo_sapiens_assembly19.fasta.bwt
+wget https://s3.amazonaws.com/juicerawsmirror/opt/juicer/references/Homo_sapiens_assembly19.fasta.pac
+wget https://s3.amazonaws.com/juicerawsmirror/opt/juicer/references/Homo_sapiens_assembly19.fasta.sa
+mkdir ../restriction_sites; cd ../restriction_sites
+wget https://s3.amazonaws.com/juicerawsmirror/opt/juicer/restriction_sites/hg19_MboI.txt
 
+#Get the juicer tools file to run with your version
+cd ../scripts
+wget https://hicfiles.tc4ga.com/public/juicer/juicer_tools.1.9.9_jcuda.0.8.jar
+ln -s juicer_tools.1.7.6_jcuda.0.8.jar juicer_tools.jar
+
+cd ..
+
+#Make a directory where you will be running your analysis (and populating with output files)
+mkdir HIC003; cd HIC003
+mkdir fastq; cd fastq
 wget http://juicerawsmirror.s3.amazonaws.com/opt/juicer/work/HIC003/fastq/HIC003_S2_L001_R1_001.fastq.gz
 wget http://juicerawsmirror.s3.amazonaws.com/opt/juicer/work/HIC003/fastq/HIC003_S2_L001_R2_001.fastq.gz
 
@@ -28,6 +50,7 @@ project=XXXX
 
 Finally, run the script which will launch all the jobs and submit them to the queue:
 ```
+cd HIC003
 ../scripts/juicer.sh
 ```
 

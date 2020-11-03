@@ -1,6 +1,10 @@
 # juicer
 PBS version of https://github.com/aidenlab/juicer for Flashlite HPC.
 
+If you find this useful, please acknowledge us, e.g:
+
+*The authors acknowledge code provided the Sydney Informatics Hub, a Core Research Facility of the University of Sydney.*
+
 # Simple Intructions
 To replicate the workflow from [https://github.com/aidenlab/juicer/wiki/Running-Juicer-on-a-cluster](https://github.com/aidenlab/juicer/wiki/Running-Juicer-on-a-cluster) follow these steps:
 
